@@ -1,0 +1,58 @@
+package javaproject;
+import java.util.Random;
+import java.util.Scanner;
+public class guessno {
+	
+	public static int randomno(int min,int max) {
+		Random ran=new Random();
+		return ran.nextInt(max-min+1)-min;
+	}
+
+	public static void main(String[] args) {
+		int max=100;
+		int min=0;
+		boolean play=true;
+		Scanner sc=new Scanner(System.in);
+		System.out.println("!!!welcome to number guessing game!!!");
+
+   while(play) {
+	   int j=randomno(min,max);
+	   int maxg=5;
+	   int attempt=0;
+	   int score=100;
+	   System.out.println("enter a number between  0 and 100:");
+	   System.out.printf("you have %d attempts:",maxg);
+	   while(attempt<maxg) {
+		   int n=sc.nextInt();
+		   attempt++;
+	if(n==j) {
+       System.out.printf("you guessed the number correctly %d **you won**",n);
+       break;
+	}
+	
+	else if(n>j) {
+		System.out.println("too high! try again");
+	}
+	else {
+		System.out.println("too low! try again");
+	}
+	score-=20;
+	System.out.printf("you have %d attempts left",(maxg-attempt));
+	   }
+	   if(attempt>=maxg) {
+		   System.out.println("SORRY! you're attempts are over\n the correct answer is "+j);
+		   
+	   }
+	   System.out.println("you scored:"+score);
+	sc.nextLine();
+	System.out.println("do you want to play again(Y/N):");
+	String wish=sc.nextLine();
+	if(!wish.equalsIgnoreCase("Y")) {
+		play=false;
+		System.out.println("thankyou for playing.\n game exits");
+	  }
+	
+	}
+   
+  }
+}
